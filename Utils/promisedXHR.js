@@ -1,8 +1,8 @@
-const promisedXHR = (url) => {
+const promisedXHR = (url, method = 'GET') => {
   return new Promise((resolve, reject) => {
 
     var request = new XMLHttpRequest();
-    request.open('GET', url);
+    request.open(method, url);
 
     request.onload = function() {
       if (request.status == 200) {
