@@ -1,16 +1,18 @@
-const debounce = (fn, wait, immediate) => {
-	let timeout;
-	return () => {
-		let context = this, args = arguments;
-		let later = () => {
-			timeout = null;
-			fn.apply(context, args);
-		};
-		let callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) fn.apply(context, args);
-	};
+const debounce = (fn, delay = 100, execAsap = false) => {
+  let timeout;
+  return function () {
+    let context = this, args = arguments;
+    if (timeout) {
+      clearTimeout(timeout);
+    } else if (execAsap) {
+      fn.apply(context, args);
+    }
+
+    timeout = setTimeout(function () {
+      execAsap || fn.apply(context, args);
+      timeout = null;
+    }, delay || 100);
+  };
 };
 
 export default debounce;
