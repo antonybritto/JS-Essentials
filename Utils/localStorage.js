@@ -1,17 +1,17 @@
 export default {
-    setObject(key, value) {
+    setObject(key = null, value = null) {
         if (!window.localStorage || !key || !value) {return;}
         localStorage.setItem(key, JSON.stringify(value));
     },
-    getObject(key) {
-        if (!window.localStorage || !key) {return;}
+    getObject(key = null) {
+        if (!window.localStorage) {return;}
         var data = localStorage.getItem(key);
         if(data) {
            return JSON.parse(data);
         }
     },
-    removeObject(key){
-        if (!window.localStorage || !key) {return;}
+    removeObject(key = null){
+        if (!window.localStorage) {return;}
         localStorage.removeItem(key);
     },
     clear() {

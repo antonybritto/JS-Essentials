@@ -1,17 +1,17 @@
 export default {
-    setObject(key, value) {
+    setObject(key = null, value = null) {
         if (!window.sessionStorage || !key || !value) {return;}
         sessionStorage.setItem(key, JSON.stringify(value));
     },
-    getObject(key) {
-        if (!window.sessionStorage || !key) {return;}
+    getObject(key = null) {
+        if (!window.sessionStorage) {return;}
         var data = sessionStorage.getItem(key);
         if(data) {
            return JSON.parse(data);
         }
     },
-    removeObject(key) {
-        if (!window.sessionStorage || !key) {return;}
+    removeObject(key = null) {
+        if (!window.sessionStorage) {return;}
         sessionStorage.removeItem(key);
     },
     getKey(position) {
