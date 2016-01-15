@@ -1,8 +1,8 @@
-cosnt longestWord = (string = "") => {
+const longestWord = (string = "") => {
   let length = 0;
   let map   = new Map();
 
-  string.split(' ').forEach(function (word) {
+  string.split(' ').forEach((word) => {
     
     if (word.length > length) {
       length = word.length;
