@@ -7,11 +7,12 @@ function* fibonacciGenerator() {
 }
   
 const fibonacci = (len) => {
-  let i = 0, fib = fibonacciGenerator();
+  let i = 0, fib = fibonacciGenerator(), result = new Set();
   while ( i < len ) {
-	    return fib.next().value;
+	    result.add(fib.next().value);
 	    i++;
   }
+  return result;
 }
 
 
