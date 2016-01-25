@@ -1,18 +1,24 @@
-const getPrimeNumber = (max) => {
-	let result;
-    for(let i = 2; i <= max; i++) {
-    	if(_isPrime(i)) {
-    		result.push(i);
-    	}
-    }
-    function _isPrime(n) {
-    	for(let i = 2; i < n; i++) {
-    		if(n%i === 0) {
-    			return false;
-    		}
-    	}
-    	return true
-    }
-};
+const sieve = (n) => {
+  var i,j;
+  let prime = [];
+  for (i = 0; i <= n; i++) prime.push(true);
 
-export default getPrimeNumber;
+  // mark for swipe
+  for (i = 2; i <= Math.sqrt(n)|0; i++) {
+    if (prime[i]) {
+      for (j = i*i; j <= n ;j += i) {
+        prime[j] = false; // eliminate all none prime numbers and mark them as 'false'
+      }
+    }
+  }
+
+  // extract primes
+  var primes = [];
+  for (i = 2; i <= n; i++) {
+    if (prime[i]) primes.push(i)
+  }
+
+  return primes;
+}
+
+export default sieve;
