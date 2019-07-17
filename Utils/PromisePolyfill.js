@@ -9,7 +9,8 @@ class Promise {
         const tryCall = callback => 
         .try(() => callback(this.value));
         const laterCalls = [];
-        const callLater = getMember => callback => new Promise(resolve => laterCalls.push(() => resolve(getMember()(callback))));
+        const callLater = getMember => callback => 
+            new Promise(resolve => laterCalls.push(() => resolve(getMember()(callback))));
         const members = {
             [states.resolved]: {
                 state: states.resolved,
