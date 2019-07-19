@@ -73,10 +73,38 @@ class Promise {
     static All() {
     }
     
-    static Any() {
+    static Any(promises) {
+        if(Array.isArray(promises) && promises.length > 0) {
+          return new Promise((resolve, reject) => {
+              promises.forEach((promise, index) => {
+                  Promise.resolve(promise).then((value) => {
+                      resolve(value);
+                  }, () => {
+                      if((index+1) === promises.length) {
+                          reject(new Error("No promises resolved successfully."))
+                      }
+                  });
+              });
+          });
+        } else {
+          return Promise.reject(new Error("Invalid or empty set of promises."));
+        }
     }
     
     static Race() {
+        if(Array.isArray(promises) && promises.length > 0) {
+          return new Promise((resolve, reject) => {
+              promises.forEach((promise, index) => {
+                  Promise.resolve(promise).then((value) => {
+                      resolve(value);
+                  }, () => {
+                      reject(new Error("No promises resolved successfully."))
+                  });
+              });
+          });
+        } else {
+          return Promise.reject(new Error("Invalid or empty set of promises."));
+        }
     }
     
     static AllSettled() {
